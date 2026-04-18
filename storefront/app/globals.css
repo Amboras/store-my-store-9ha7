@@ -4,35 +4,36 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 0 0% 10%;
-    --muted: 40 10% 94%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 35 40% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 40 10% 88%;
-    --ring: 35 40% 50%;
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 98%;
+    /* Vitality+ palette — warm cream, deep forest, amber */
+    --background: 40 30% 97%;
+    --foreground: 155 30% 10%;
+    --muted: 40 15% 92%;
+    --muted-foreground: 155 10% 38%;
+    --accent: 38 70% 50%;
+    --accent-foreground: 155 30% 10%;
+    --border: 40 15% 86%;
+    --ring: 155 35% 22%;
+    --primary: 155 35% 18%;
+    --primary-foreground: 40 30% 97%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    /* Brand colors (dynamically injected from Store.metadata.brand) */
-    /* Access in CSS: var(--brand-primary), var(--brand-secondary) */
-    /* Managed by BrandStyleInjector component */
+    /* Brand colors */
+    --brand-primary: 20 78 54;
+    --brand-secondary: 201 143 58;
   }
 
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 40 20% 94%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 35 45% 55%;
-    --accent-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --ring: 35 45% 55%;
-    --primary: 40 20% 94%;
-    --primary-foreground: 0 0% 6%;
+    --background: 155 20% 8%;
+    --foreground: 40 30% 94%;
+    --muted: 155 15% 14%;
+    --muted-foreground: 40 10% 65%;
+    --accent: 38 70% 55%;
+    --accent-foreground: 155 30% 10%;
+    --border: 155 15% 18%;
+    --ring: 38 70% 55%;
+    --primary: 40 30% 94%;
+    --primary-foreground: 155 30% 10%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
   }
@@ -72,33 +73,41 @@
     @apply w-full;
   }
 
-  /* Brand color utilities - uses colors from Store.metadata.brand */
+  /* Brand color utilities */
   .btn-brand-primary {
-    background-color: var(--brand-primary, hsl(var(--primary)));
-    color: white;
+    background-color: hsl(155 35% 18%);
+    color: hsl(40 30% 97%);
   }
   .btn-brand-primary:hover {
-    opacity: 0.9;
+    background-color: hsl(155 40% 22%);
   }
 
   .text-brand-primary {
-    color: var(--brand-primary, hsl(var(--primary)));
+    color: hsl(155 35% 18%);
   }
 
-  .text-brand-secondary {
-    color: var(--brand-secondary, hsl(var(--accent)));
+  .text-brand-accent {
+    color: hsl(38 70% 45%);
   }
 
   .border-brand-primary {
-    border-color: var(--brand-primary, hsl(var(--border)));
+    border-color: hsl(155 35% 18%);
   }
 
   .bg-brand-primary {
-    background-color: var(--brand-primary, hsl(var(--primary)));
+    background-color: hsl(155 35% 18%);
   }
 
-  .bg-brand-secondary {
-    background-color: var(--brand-secondary, hsl(var(--accent)));
+  .bg-brand-accent {
+    background-color: hsl(38 70% 50%);
+  }
+
+  .bg-brand-cream {
+    background-color: hsl(40 30% 97%);
+  }
+
+  .bg-brand-soft {
+    background-color: hsl(40 25% 94%);
   }
 }
 
@@ -109,12 +118,22 @@ html {
 
 /* Selection color */
 ::selection {
-  @apply bg-accent/20 text-foreground;
+  background-color: hsl(38 70% 50% / 0.25);
+  color: hsl(155 35% 18%);
 }
 
 /* Focus styles */
 :focus-visible {
   @apply outline-2 outline-offset-2 outline-ring;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 35s linear infinite;
 }
 
 /* Cookie consent animation */
@@ -131,4 +150,13 @@ html {
 
 .animate-fade-in {
   animation: fade-in 0.3s ease-out;
+}
+
+/* Subtle pulse for urgency dots */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
 }
