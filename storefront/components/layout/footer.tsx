@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Leaf, Instagram, Twitter, Facebook, Youtube } from 'lucide-react'
+import { Leaf, Globe, Share2, MessageCircle, Play } from 'lucide-react'
 import { clearConsent } from '@/lib/cookie-consent'
 import { usePolicies } from '@/hooks/use-policies'
 
@@ -83,7 +83,7 @@ export default function Footer() {
               Formulated by experts. Tested by independent labs. Trusted by 50,000+ daily.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
+              {[Globe, Share2, MessageCircle, Play].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
